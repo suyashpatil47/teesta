@@ -79,7 +79,7 @@ function Data() {
     }
     return (
         <div>   
-            <input className="goal-item"></input>
+            
             {Task.map((countr, km) => {
 
                 return (
