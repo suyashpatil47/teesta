@@ -1,8 +1,32 @@
 .goal-item {
-    margin: 1rem 0;
-    background: #8b005d;
+    margin: 0.5rem 0;
+    background: hsl(180, 4%, 72%);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-    color: white;
-    padding: 0rem 2rem;
+    color: rgb(7, 7, 7);
+    padding: 0rem 0.6rem;
     cursor: pointer;
+    
   }
+  .stateButton{
+      background: transparent;
+      border: none;
+      text-decoration: underline;
+      text-align: center;
+  }
+  .statediv{
+      margin-left: 10%;
+      padding-left: 3%;
+  }
+  body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .citydiv{
+    margin-left: 25%;
+    padding-left: 3%;
+}
+.submitbutton{
+    margin-left: 65%;
+}

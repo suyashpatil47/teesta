@@ -13,7 +13,7 @@ function Data() {
     const [checked, setCheckedState] = useState([]);
     const [dropvalue, setDropDown] = useState([]);
     const [checkAll, setcheckall] = useState([]);
-
+    const [inputVal, setinputval] = useState();
     const dropDown = (event) => {
 
         var dropList = [...dropvalue];
@@ -25,7 +25,15 @@ function Data() {
         }
         setDropDown(dropList);
     }
+    const inputCity = (event) => {
 
+        setinputval(event.target.value);
+        if (event.target.value == '') {
+            setinputval(null);
+        }
+
+
+    }
     const viewCity = (event) => {
         var updatedList = [...checked];
         var updkey = [...checkAll];
@@ -56,7 +64,7 @@ function Data() {
                     if (i.id == parseInt(event.target.id) + 1) {
                         i.city.map((b) => {
 
-                            updatedList.splice(checked.indexOf(event.target.value), 1);
+                            updatedList.splice(updatedList.indexOf(b.name), 1);
 
                         })
                     }
@@ -76,10 +84,12 @@ function Data() {
 
         }
         )
+        
     }
     return (
-        <div>   
-            
+        <div>
+
+            <input type='text' placeholder='Search City' className="goal-item" onChange={inputCity}></input>
             {Task.map((countr, km) => {
 
                 return (
@@ -98,11 +108,11 @@ function Data() {
                                 return (
 
                                     <div>
-                                        {checkedStatus && <div className="goal-item">
-                                            <label>State:-</label>
+                                        {checkedStatus && <div className="goal-item statediv">
+
 
                                             <input type="checkbox" key={key + 5} onChange={viewCity} value={stat.state} id={key} ></input>
-                                            <button value={stat.state} onClick={dropDown}>{stat.state}</button>
+                                            <button className="stateButton" value={stat.state} onClick={dropDown}>{stat.state}</button>
 
                                         </div>}
                                         <div>
@@ -110,9 +120,9 @@ function Data() {
 
                                                 return (
 
-                                                    <div>
+                                                    <div >
 
-                                                        {(checked.includes(stat.state) || dropvalue.includes(stat.state)) && checkedStatus && <div className="goal-item">
+                                                        {(((checked.includes(stat.state) || dropvalue.includes(stat.state)) && checkedStatus) || (cit.name.toLowerCase().includes(inputVal))) && <div className="goal-item citydiv">
                                                             <input type="checkbox" key={k + 2} value={cit.name} onChange={viewCity} id={stat.state} checked={checkAll[key]}></input>
                                                             <label >{cit.name}</label>
                                                         </div>}
@@ -133,7 +143,7 @@ function Data() {
 
             }
             )}
-            {checkedStatus && <button className="goal-item" onClick={showData}>Submit</button>}
+            {(checkedStatus || inputVal) && <button className="goal-item submitbutton" onClick={showData}>Submit</button>}
         </div>
     );
 
